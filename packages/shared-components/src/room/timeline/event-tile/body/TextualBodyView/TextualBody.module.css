@@ -14,8 +14,6 @@
     /* Keep the emoji line clear of the line box, as in the legacy IRC tile. */
     padding-block: 1px;
     display: inline-block;
-    /* Shrink-to-fit would size this box to an unwrapped code block, pushing the text out of the tile. */
-    max-width: 100%;
     line-height: 1.125rem;
 }
 
@@ -41,6 +39,12 @@
 
 .annotated {
     display: flex;
+}
+
+/* Let the body shrink to the tile width: as a flex item its default min-width would grow it to the
+   width of an unwrapped code block, pushing the rest of the text out of the tile. */
+.annotated > * {
+    min-width: 0;
 }
 
 .annotatedInline {

@@ -31,7 +31,6 @@ import { topicToHtml } from "../HtmlUtils";
 import QuestionDialog from "../components/views/dialogs/QuestionDialog";
 import WidgetUtils from "../utils/WidgetUtils";
 import { textToHtmlRainbow } from "../utils/colour";
-import { htmlSerializeFromMdIfNeeded } from "../editor/serialize";
 import { AddressType, getAddressType } from "../UserAddress";
 import { abbreviateUrl } from "../utils/UrlUtils";
 import { getDefaultIdentityServerUrl, setToDefaultIdentityServer } from "../utils/IdentityServerUtils";

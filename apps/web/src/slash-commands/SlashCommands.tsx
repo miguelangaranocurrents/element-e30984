@@ -31,6 +31,7 @@ import { topicToHtml } from "../HtmlUtils";
 import QuestionDialog from "../components/views/dialogs/QuestionDialog";
 import WidgetUtils from "../utils/WidgetUtils";
 import { textToHtmlRainbow } from "../utils/colour";
+import { htmlSerializeFromMdIfNeeded } from "../editor/serialize";
 import { AddressType, getAddressType } from "../UserAddress";
 import { abbreviateUrl } from "../utils/UrlUtils";
 import { getDefaultIdentityServerUrl, setToDefaultIdentityServer } from "../utils/IdentityServerUtils";
@@ -73,7 +74,9 @@ export const Commands = [
         args: "<message>",
         description: _td("slash_command|spoiler"),
         runFn: function (cli, roomId, threadId, message = "") {
-            return successSync(ContentHelpers.makeHtmlMessage(message, `<span data-mx-spoiler>${message}</span>`));
+            // Render the spoilered text as Markdown, as a regular message would be (e.g. **bold**).
+            const formatted = htmlSerializeFromMdIfNeeded(message, { forceHTML: true }) ?? message;
+            return successSync(ContentHelpers.makeHtmlMessage(message, `<span data-mx-spoiler>${formatted}</span>`));
         },
         category: CommandCategories.messages,
     }),

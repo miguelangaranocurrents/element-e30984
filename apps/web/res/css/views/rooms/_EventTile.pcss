@@ -46,6 +46,12 @@ $left-gutter: 64px;
         }
     }
 
+    /* The body slot wrapping the edit composer clips its content by default. The formatting bar
+       and the autocomplete open above the composer, so the wrapper must not clip them either. */
+    .mx_EditMessageComposerWrapper {
+        overflow: visible;
+    }
+
     .mx_EventTile_searchHighlight {
         background-color: $accent;
         color: $accent-fg-color;
